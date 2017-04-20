@@ -1,0 +1,29 @@
+ManifestFileVersion: 0
+CRC: 2762581301
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 1b68ed977a36118aaa093b591c159f33
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c30bef3c952cd58e329fb4ea2abf1d75
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/man.prefab
+Dependencies:
+- E:/Lcx's Documents/Test/unity_5_6_0f3_Temp/Assets/StreamingAssets/Windows/new material.unity3d
