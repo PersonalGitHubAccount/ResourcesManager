@@ -28,11 +28,11 @@ public class test : MonoBehaviour
         {
             Caching.CleanCache();
             Resources.UnloadUnusedAssets();
-            //StartCoroutine(AssetLoader.Instance.CheckVersion());
-            string loadpath = "OSX/OSX";
-            string asname = "man";
-            string post = ".unity3d";
-			StartCoroutine(AssetLoader.Instance.Load(loadpath, PlatForm.OSX, asname, post, typeof(GameObject), CallBack, false, 0));
+            Debug.Log("123456");
+            string loadpath = "Windows/Windows";
+            string asname = "woman";
+            string post = ".assetbundle";
+			StartCoroutine(AssetLoader.Instance.Load(loadpath, PlatForm.Windows, asname, post, typeof(GameObject), CallBack, false, 0));
         }
 	}
 

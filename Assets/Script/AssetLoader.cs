@@ -97,16 +97,10 @@ public class AssetLoader
     /// <returns></returns>
     public IEnumerator Load(string assetPath, PlatForm platform, string assetName, string assetPostfix, Type type, CallBackFunc callbackfunc, bool isUnload, int version)
     {
-      // while(!download)
-      // {
-      //     yield return null;
-      // }
 
         yield return new WaitForEndOfFrame();
 
         string loadPath = GetThePathWithPlatformLocal;
-
-        //string loadPath = PathUsed;
 
         string loadUrl = Path.Combine(loadPath, assetPath);
 		Debug.LogWarning(loadUrl);
@@ -262,32 +256,6 @@ public class AssetLoader
             bundle.Unload(true);
         }
     }
-
-    bool download;
-	/// <summary>
-	/// Checks the version.检查资源版本
-	/// </summary>
-	/// <returns>The version.</returns>
-    public IEnumerator CheckVersion()
-    {
-        JsonResolver.Instance.CheckVersion(GetThePathWithPlatformLocal + "/resourcesInfo.json", GetThePathWithPlatformInternet + "/resourcesInfo.json");
-        while(JsonResolver.Instance.localVersion == 0 &&JsonResolver.Instance.internetVersion == 0)
-        {
-            download = false;
-            yield return null;
-        }
-
-        if(JsonResolver.Instance.localVersion == JsonResolver.Instance.internetVersion)
-        {
-            PathUsed = GetThePathWithPlatformLocal;
-        }
-        else
-        {
-            PathUsed = GetThePathWithPlatformInternet;
-        }
-        download = true;
-    }
-
 
 }// End Class
 

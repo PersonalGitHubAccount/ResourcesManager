@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 1487983749
+CRC: 491385653
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: f92f34819f3a771e53bf849daf265d76
+    Hash: 03e59a2055bcb425960f15b24a61fbdf
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 9d6095f8669a77eb14618314209df889
+    Hash: d1fdc4d2cfa7fb2b35b0052dcd4051ab
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -21,11 +21,9 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 43
   Script: {instanceID: 0}
-- Class: 64
+- Class: 136
   Script: {instanceID: 0}
-- Class: 114
-  Script: {fileID: 11500000, guid: 7f6182ca87533de40b872074988a78de, type: 3}
 Assets:
-- Assets/Resources/Quad.prefab
+- Assets/Resources/woman/woman.prefab
 Dependencies:
-- E:/Lcx's Documents/Test/unity_5_6_0f3_Temp/Assets/StreamingAssets/Windows/new material.unity3d
+- E:/Lcx's Documents/Git/Repository/ResourcesManager/Assets/StreamingAssets/Windows/common.assetbundle
