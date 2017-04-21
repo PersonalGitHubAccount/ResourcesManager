@@ -51,7 +51,11 @@ public class AssetLoader
         {
             if (Application.isEditor)
             {
-                return "file://" + pathlocal;
+				#if UNITY_EDITOR_OSX
+                return "file:///" + pathlocal;
+				#elif UNITY_EDITOR
+				return "file://" + pathlocal;
+				#endif
             }
             else
             {
