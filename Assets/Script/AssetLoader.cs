@@ -11,7 +11,9 @@ using System;
 using System.IO;
 
 
-
+/// <summary>
+/// Call back func.回调函数
+/// </summary>
 public delegate void CallBackFunc(UnityEngine.Object obj);
 
 
@@ -27,9 +29,18 @@ public class AssetLoader
     /// </summary>
     private string pathlocal = Application.streamingAssetsPath; //"D:/Soft/Apache/WWW/StreamingAssets";// Application.streamingAssetsPath;
 
+	/// <summary>
+	/// The path internet.
+	/// </summary>
     private string pathInternet = "D:/Soft/Apache/WWW/StreamingAssets";
 
+
+	/// <summary>
+	/// The asset bundle reference dic.
+	/// </summary>
     private Dictionary<string, AssetBundle> assetBundleRefDic = new Dictionary<string, AssetBundle>();
+
+
 
     /// <summary>
     /// 根据平台获取路径
@@ -40,7 +51,7 @@ public class AssetLoader
         {
             if (Application.isEditor)
             {
-                return "file:///" + pathlocal;
+                return "file://" + pathlocal;
             }
             else
             {
@@ -49,6 +60,11 @@ public class AssetLoader
         }
     }
 
+
+	/// <summary>
+	/// Gets the get the path with platform internet.
+	/// </summary>
+	/// <value>The get the path with platform internet.</value>
     private string GetThePathWithPlatformInternet
     {
         get
@@ -81,19 +97,19 @@ public class AssetLoader
     /// <returns></returns>
     public IEnumerator Load(string assetPath, PlatForm platform, string assetName, string assetPostfix, Type type, CallBackFunc callbackfunc, bool isUnload, int version)
     {
-        while(!download)
-        {
-            yield return null;
-        }
+      // while(!download)
+      // {
+      //     yield return null;
+      // }
 
         yield return new WaitForEndOfFrame();
 
-        //string loadPath = GetThePathWithPlatformLocal;
+        string loadPath = GetThePathWithPlatformLocal;
 
-        string loadPath = PathUsed;
+        //string loadPath = PathUsed;
 
         string loadUrl = Path.Combine(loadPath, assetPath);
-        Debug.LogWarning(PathUsed);
+		Debug.LogWarning(loadUrl);
         string targetAssetName = string.Format("{0}{1}", assetName, assetPostfix);
 
         Debug.LogWarning(targetAssetName);
@@ -182,7 +198,7 @@ public class AssetLoader
     /// <summary>
     /// 获取平台名称
     /// </summary>
-    /// <param name="platform"></param>
+    /// <param name="platform">平台类型</param>
     /// <returns>返回字符串</returns>
     private string GetPlatformStr(PlatForm platform)
     {
@@ -208,7 +224,7 @@ public class AssetLoader
     }
 
     /// <summary>
-    /// 
+    /// 从字典中获取资源
     /// </summary>
     /// <param name="assetName"></param>
     /// <returns></returns>
@@ -222,14 +238,15 @@ public class AssetLoader
         return null;
     }
 
+
     /// <summary>
-    /// 
+    /// 执行回调函数
     /// </summary>
-    /// <param name="bundle"></param>
-    /// <param name="assetName"></param>
-    /// <param name="type"></param>
-    /// <param name="callbackfunc"></param>
-    /// <param name="isUnload"></param>
+    /// <param name="bundle">AssetBundle</param>
+    /// <param name="assetName">资源名称</param>
+    /// <param name="type">资源类型</param>
+    /// <param name="callbackfunc">回调函数</param>
+    /// <param name="isUnload">是否卸载资源</param>
     private void ExcuteCallBackFunc(AssetBundle bundle, string assetName, Type type, CallBackFunc callbackfunc, bool isUnload)
     {
         UnityEngine.Object obj = bundle.LoadAsset(assetName, type);
@@ -247,6 +264,10 @@ public class AssetLoader
     }
 
     bool download;
+	/// <summary>
+	/// Checks the version.检查资源版本
+	/// </summary>
+	/// <returns>The version.</returns>
     public IEnumerator CheckVersion()
     {
         JsonResolver.Instance.CheckVersion(GetThePathWithPlatformLocal + "/resourcesInfo.json", GetThePathWithPlatformInternet + "/resourcesInfo.json");

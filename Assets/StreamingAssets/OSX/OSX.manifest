@@ -1,0 +1,15 @@
+ManifestFileVersion: 0
+CRC: 1373744658
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: common.assetbundle
+      Dependencies: {}
+    Info_1:
+      Name: man.assetbundle
+      Dependencies:
+        Dependency_0: common.assetbundle
+    Info_2:
+      Name: woman.assetbundle
+      Dependencies:
+        Dependency_0: common.assetbundle
