@@ -51,7 +51,11 @@ public class AssetLoader
         {
             if (Application.isEditor)
             {
+#if UNITY_EDITOR_OSX
+                return "file:///" + pathlocal;
+#elif UNITY_EDITOR
                 return "file://" + pathlocal;
+#endif
             }
             else
             {
@@ -60,25 +64,6 @@ public class AssetLoader
         }
     }
 
-
-	/// <summary>
-	/// Gets the get the path with platform internet.
-	/// </summary>
-	/// <value>The get the path with platform internet.</value>
-    private string GetThePathWithPlatformInternet
-    {
-        get
-        {
-            if(Application.isEditor)
-            {
-                return "file:///" + pathInternet;
-            }
-            else
-            {
-                return pathInternet;
-            }
-        }
-    }
 
 
     private string PathUsed;
