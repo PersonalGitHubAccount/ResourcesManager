@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2762581301
+CRC: 3727890280
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 1b68ed977a36118aaa093b591c159f33
+    Hash: 3dc5222b97ab9453a9daad6a88c97700
   TypeTreeHash:
     serializedVersion: 2
-    Hash: c30bef3c952cd58e329fb4ea2abf1d75
+    Hash: 0f56a66424dc90f89c4386b1d141cbbc
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -21,9 +21,14 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 43
   Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
 - Class: 65
   Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 7f6182ca87533de40b872074988a78de, type: 3}
 Assets:
-- Assets/Resources/man.prefab
+- Assets/Resources/man/Quad.prefab
+- Assets/Resources/man/man.prefab
 Dependencies:
-- E:/Lcx's Documents/Test/unity_5_6_0f3_Temp/Assets/StreamingAssets/Windows/new material.unity3d
+- E:/Lcx's Documents/Git/Repository/ResourcesManager/Assets/StreamingAssets/Windows/common.assetbundle

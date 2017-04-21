@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 using System.IO;
 
@@ -27,7 +25,7 @@ public class Packager : Editor
 		//清除包名
 		ClearAssetBundlesName ();
 
-		//
+		//设置包名
 		Pack (sourcePath);
 
 		//输出路径
@@ -38,14 +36,16 @@ public class Packager : Editor
 			Directory.CreateDirectory (outputPath);
 		}
 
+        Debug.Log("当前打包平台为[" + EditorUserBuildSettings.activeBuildTarget + "]");
+
 		//打包assetbundle
 		//BuildPipeline.BuildAssetBundles (outputPath,0,EditorUserBuildSettings.activeBuildTarget);
-		BuildPipeline.BuildAssetBundles(outputPath, BuildAssetBundleOptions.None, BuildTarget.StandaloneOSXIntel64);
+		BuildPipeline.BuildAssetBundles(outputPath, BuildAssetBundleOptions.None, EditorUserBuildSettings.activeBuildTarget);
         //BuildPipeline.BuildAssetBundles(outputPath, BuildAssetBundleOptions.None, BuildTarget.StandaloneWindows64);
 
 		//刷新资源
         AssetDatabase.Refresh ();
-		Debug.Log ("打包完成");
+		Debug.Log ("[打包完成]");
 	}
 
 	/// <summary>
@@ -55,7 +55,7 @@ public class Packager : Editor
 	{
 		//获取所有包名数组长度
 		int length = AssetDatabase.GetAllAssetBundleNames ().Length;
-		Debug.Log (length);
+		Debug.Log ("清除[" + length + "]个assetbundleName");
 
 		//获取旧包的包名数组
 		string[] oldAssetBundleNames = new string[length];
@@ -73,7 +73,8 @@ public class Packager : Editor
 
 		//获取清除后包名数组长度
 		length = AssetDatabase.GetAllAssetBundleNames ().Length;
-		Debug.Log (length);
+
+		Debug.Log ("剩余[" + length + "]个AssetBundleName");
 	}
 
 	/// <summary>
@@ -82,6 +83,7 @@ public class Packager : Editor
 	/// <param name="source">Source.</param>
 	static void Pack(string source)
 	{
+        Debug.Log("[开始设置新的AssetBundleName]");
 		//获取资源路径的文件夹信息
 		DirectoryInfo floder = new DirectoryInfo (source);
 
@@ -111,6 +113,7 @@ public class Packager : Editor
 				}
 			}
 		}
+        Debug.Log("[新的AssetBundelName设置完成]");
 	}
 
 	/// <summary>
@@ -135,16 +138,22 @@ public class Packager : Editor
 		assetImporter.assetBundleName = assetName;
 	}
 
-
-	static void SetAssetBundleName(string source, string name)
+    /// <summary>
+    /// 根据不同的文件夹名称，设置assetbundle的名称
+    /// </summary>
+    /// <param name="source">路径</param>
+    /// <param name="floderName">文件夹名</param>
+	static void SetAssetBundleName(string source, string floderName)
 	{
+        //替换符号
 		string _source = Replace (source);
+        //资源路径
 		string _assetPath = "Assets" + _source.Substring (Application.dataPath.Length);
-		string _assetPath2 = _source.Substring (Application.dataPath.Length + 1);
+        //获取assetimporter
 		AssetImporter assetImporter = AssetImporter.GetAtPath (_assetPath);
-		Debug.LogWarning (_assetPath2.LastIndexOf("/"));
-
-		string assetName = string.Format ("{0}.{1}", name, PostDix.assetbundle);
+        //生成assetbundle的名称
+		string assetName = string.Format ("{0}.{1}", floderName, PostDix.assetbundle);
+        //设置assetbundle的名称
 		assetImporter.assetBundleName = assetName;
 	}
 
@@ -158,7 +167,8 @@ public class Packager : Editor
 		return s.Replace ("\\","/");
 	}
 
-}
+}// End Class
+
 
 /// <summary>
 /// Platform.
@@ -190,6 +200,10 @@ public class Platform
 	}
 }
 
+
+/// <summary>
+/// 后缀名--枚举
+/// </summary>
 public enum PostDix
 {
 	unity3d,

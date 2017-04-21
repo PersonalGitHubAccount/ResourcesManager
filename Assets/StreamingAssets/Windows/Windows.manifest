@@ -1,23 +1,15 @@
 ManifestFileVersion: 0
-CRC: 3355947654
+CRC: 1157539609
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: imageeffcetone.unity3d
+      Name: common.assetbundle
       Dependencies: {}
     Info_1:
-      Name: man.unity3d
+      Name: man.assetbundle
       Dependencies:
-        Dependency_0: new material.unity3d
+        Dependency_0: common.assetbundle
     Info_2:
-      Name: new material.unity3d
+      Name: woman.assetbundle
       Dependencies:
-        Dependency_0: imageeffcetone.unity3d
-        Dependency_1: "\u517D\u5F62\u89E5.unity3d"
-    Info_3:
-      Name: quad.unity3d
-      Dependencies:
-        Dependency_0: new material.unity3d
-    Info_4:
-      Name: "\u517D\u5F62\u89E5.unity3d"
-      Dependencies: {}
+        Dependency_0: common.assetbundle
